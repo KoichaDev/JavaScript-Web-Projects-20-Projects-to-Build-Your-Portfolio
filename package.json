@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "parcel watch src/index.js --public-url ./ --out-dir dist/",
+    "prod": "parcel build src/index.js --public-url ./ --out-dir dist/",
+    "cs-watch": "sass scss/main.scss css/style.css --watch --no-source-map",
+    "cs-compile": "sass scss/main.scss css/style.css --no-source-map",
+    "cs-compress": "sass scss/main.scss css/style.css --style=compressed --no-source-map",
+    "cs-prefix": "postcss css/style.css -o css/style.css --use autoprefixer -b 'last 4 versions' --no-source-map",
+    "cs-build": "npm-run-all cs-compile cs-compress cs-prefix"
   },
   "repository": {
     "type": "git",
@@ -16,5 +22,16 @@
   "bugs": {
     "url": "https://github.com/KoichaDev/JavaScript-Web-Projects-20-Projects-to-Build-Your-Portfolio/issues"
   },
-  "homepage": "https://github.com/KoichaDev/JavaScript-Web-Projects-20-Projects-to-Build-Your-Portfolio#readme"
+  "homepage": "https://github.com/KoichaDev/JavaScript-Web-Projects-20-Projects-to-Build-Your-Portfolio#readme",
+  "devDependencies": {
+    "browserslist": "^4.16.1",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-clean-dist": "0.0.6",
+    "parcel-plugin-purgecss": "^3.0.0",
+    "sass": "^1.32.5"
+  },
+  "dependencies": {
+    "core-js-builder": "^3.9.1",
+    "create-scss": "^2.7.1"
+  }
 }
