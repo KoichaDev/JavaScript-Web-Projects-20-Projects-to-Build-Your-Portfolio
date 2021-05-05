@@ -1,7 +1,11 @@
 node_modules
 .cache
 <<<<<<< HEAD
+<<<<<<< HEAD
 dist
 =======
 dist
 >>>>>>> 00d80b6 (Add: 📦 Parcel Dependency)
+=======
+dist
+>>>>>>> feature/scss-7-in-1
