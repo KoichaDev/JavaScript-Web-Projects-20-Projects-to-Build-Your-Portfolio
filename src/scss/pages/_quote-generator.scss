@@ -1,4 +1,4 @@
-.main-quote-generator {
+.quote-body {
   min-height: 100vh;
   background-color: #fdfdfd;
   background-image: $svg-hero-pattern-circle-board;
@@ -6,4 +6,42 @@
   font-family: Montserrat, sans-serif;
   font-weight: 700;
   @include flex-align-center;
+
+  @include max-width-mq('large') {
+    .quote-container {
+      margin: auto 10px;
+
+      .quote-container__text {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  .quote-container {
+    width: 100%;
+    max-width: 56.25em;
+    padding: 1.25em 1.875em;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .quote-container__text {
+    font-size: 2.75rem;
+
+    .fa-quote-left {
+      font-size: 4rem;
+    }
+  }
+
+  .quote-container__author {
+    margin-top: 15px;
+    font-size: 2rem;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .long-quote {
+    font-size: 2rem;
+  }
 }

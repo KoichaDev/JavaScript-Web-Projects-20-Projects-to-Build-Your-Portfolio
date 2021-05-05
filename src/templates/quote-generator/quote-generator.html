@@ -5,10 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quote Generator</title>
+
+    <!-- Font Awesome 5 CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+    />
+
     <link rel="stylesheet" href="../../../dist/index.css" />
+    <script src="../../../dist/index.js" defer></script>
   </head>
-  <body>
-    <main class="main-quote-generator"></main>
-    lorem ipsum
+  <body class="quote-body">
+    <main class="quote-container" id="quote-container">
+      <!-- Quote -->
+      <div class="quote-container__text">
+        <i class="fas fa-quote-left"></i>
+        <span id="quote">
+          What you are is what you have been. What you'll be is what you do now.
+        </span>
+      </div>
+
+      <!-- Author -->
+      <div class="quote-container__author">
+        <span id="author">Buddha</span>
+      </div>
+
+      <!-- Buttons -->
+      <div class="quote-container__buttons">
+        <button class="twitter" id="twitter" title="Tweet this!">
+          <i class="fab fa-twitter"></i>
+        </button>
+        <button id="new-quote">New Quote</button>
+      </div>
+    </main>
   </body>
 </html>
