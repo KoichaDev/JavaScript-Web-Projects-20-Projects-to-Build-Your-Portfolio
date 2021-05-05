@@ -2,10 +2,17 @@
 // Mixins
 //============
 
+@mixin flex-align-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 //add overlay on element, between () is the color of the overlay
 @mixin overlay($color, $opacity) {
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     display: inline-block;
     background: $color;
@@ -26,7 +33,7 @@
 
 //use for pseudo element
 @mixin pseudo {
-  content: "";
+  content: '';
   position: absolute;
   display: block;
 }
@@ -58,8 +65,7 @@ $xlarge: 1920px;
     @media (min-width: $large) {
       @content;
     }
-  }
-  @else if $breakpoint == xlarge {
+  } @else if $breakpoint == xlarge {
     @media (min-width: $xlarge) {
       @content;
     }

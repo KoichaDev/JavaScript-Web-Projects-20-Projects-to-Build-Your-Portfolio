@@ -1,12 +1,12 @@
-@import 'abstracts/variables';
+@import 'abstracts/colors';
 @import 'abstracts/mixins';
 @import 'abstracts/helpers';
 @import 'abstracts/functions';
+@import 'abstracts/svg';
 
 @import 'base/reset';
 @import 'base/global';
 @import 'base/typography';
-@import 'base/shame';
 
 @import 'layout/grid';
 @import 'layout/navigation';
@@ -26,5 +26,6 @@
 @import 'components/table';
 
 @import 'pages/home';
+@import 'pages/quote-generator';
 
 @import 'themes/theme';

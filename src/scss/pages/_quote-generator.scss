@@ -1,0 +1,9 @@
+.main-quote-generator {
+  min-height: 100vh;
+  background-color: #fdfdfd;
+  background-image: $svg-hero-pattern-circle-board;
+  color: $clr-black-900;
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  @include flex-align-center;
+}
