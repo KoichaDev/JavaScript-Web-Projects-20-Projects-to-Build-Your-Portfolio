@@ -10,10 +10,6 @@
   @include max-width-mq('large') {
     .quote-container {
       margin: auto 10px;
-
-      .quote-container__text {
-        font-size: 2.5rem;
-      }
     }
   }
 
@@ -27,7 +23,7 @@
   }
 
   .quote-container__text {
-    font-size: 2.75rem;
+    font-size: clamp(2.5rem, 2.75rem, 3rem);
 
     .fa-quote-left {
       font-size: 4rem;
@@ -39,6 +35,43 @@
     font-size: 2rem;
     font-weight: 400;
     font-style: italic;
+  }
+
+  .quote-container__buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      cursor: pointer;
+      font-size: 1.2rem;
+      height: 2.5rem;
+      border: none;
+      border-radius: 10px;
+      color: $clr-white-100;
+      background: $clr-grey-800;
+      outline: none;
+      padding: 8px 1.8em;
+      box-shadow: 0 0.3rem rgba(121, 121, 121, 0.65);
+    }
+
+    button:hover {
+      filter: brightness(110%);
+    }
+
+    // :active-pseudo class element is used to activate when clicking on a button
+    button:active {
+      transform: translate(0, 5px);
+      box-shadow: 0 0.1rem rgba(255, 255, 255, 0.65);
+    }
+
+    .quote-container__twitter-button:hover {
+      color: $clr-twitter;
+
+      .fa-twitter {
+        font-size: 1.5rem;
+      }
+    }
   }
 
   .long-quote {
