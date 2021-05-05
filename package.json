@@ -5,12 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel watch src/index.js --public-url ./ --out-dir dist/",
-    "prod": "parcel build src/index.js --public-url ./ --out-dir dist/",
-    "cs-watch": "sass scss/main.scss css/style.css --watch --no-source-map",
-    "cs-compile": "sass scss/main.scss css/style.css --no-source-map",
-    "cs-compress": "sass scss/main.scss css/style.css --style=compressed --no-source-map",
-    "cs-prefix": "postcss css/style.css -o css/style.css --use autoprefixer -b 'last 4 versions' --no-source-map",
-    "cs-build": "npm-run-all cs-compile cs-compress cs-prefix"
+    "prod": "parcel build src/index.js --public-url ./ --out-dir dist/"
   },
   "repository": {
     "type": "git",
@@ -31,7 +26,6 @@
     "sass": "^1.32.5"
   },
   "dependencies": {
-    "core-js-builder": "^3.9.1",
-    "create-scss": "^2.7.1"
+    "core-js-builder": "^3.9.1"
   }
 }
