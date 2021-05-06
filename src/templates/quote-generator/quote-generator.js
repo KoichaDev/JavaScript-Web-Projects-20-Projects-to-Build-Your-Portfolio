@@ -6,8 +6,18 @@ if (currentSite) {
   const authorText = document.getElementById('author');
   const twitterButton = document.getElementById('twitter');
   const quoteButton = document.getElementById('new-quote');
-
+  const loaderSpinner = document.getElementById('loader-spinner');
   let apiQuotes = [];
+
+  function showLoadingSpinner() {
+    loaderSpinner.hidden = false;
+    quoteContainer.hidden = true;
+  }
+
+  function hideLoadingSpinner() {
+    quoteContainer.hidden = false;
+    loaderSpinner.hidden = true;
+  }
 
   function displayQuote(array) {
     const quote = shuffleArrayIndex(array);
@@ -24,16 +34,19 @@ if (currentSite) {
   }
 
   function generateQuote() {
+    showLoadingSpinner();
     displayQuote(apiQuotes);
     displayAuthor(apiQuotes);
   }
 
   // Picking up random index position from an array
   function shuffleArrayIndex(arr) {
+    hideLoadingSpinner();
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
   async function getQuotes() {
+    showLoadingSpinner();
     const apiQuoteUrl = 'https://type.fit/api/quotes';
 
     try {
@@ -54,7 +67,6 @@ if (currentSite) {
 
   // Event Listeners
   quoteButton.addEventListener('click', generateQuote);
-
   twitterButton.addEventListener('click', shareTwitterQuotes);
 
   getQuotes();

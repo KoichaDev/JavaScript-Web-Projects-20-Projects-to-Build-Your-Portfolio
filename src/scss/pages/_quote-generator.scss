@@ -13,6 +13,25 @@
     }
   }
 
+  .quote-container__loader-animation {
+    margin: auto;
+    border: 16px solid $clr-white-200;
+    border-top: 16px solid $clr-grey-800;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
   .quote-container {
     width: 100%;
     max-width: 56.25em;
@@ -20,56 +39,56 @@
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.4);
     box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.2);
-  }
 
-  .quote-container__text {
-    font-size: clamp(2.5rem, 2.75rem, 3rem);
+    .quote-container__text {
+      font-size: clamp(2.5rem, 2.75rem, 3rem);
 
-    .fa-quote-left {
-      font-size: 4rem;
-    }
-  }
-
-  .quote-container__author {
-    margin-top: 15px;
-    font-size: 2rem;
-    font-weight: 400;
-    font-style: italic;
-  }
-
-  .quote-container__buttons {
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
-
-    button {
-      cursor: pointer;
-      font-size: 1.2rem;
-      height: 2.5rem;
-      border: none;
-      border-radius: 10px;
-      color: $clr-white-100;
-      background: $clr-grey-800;
-      outline: none;
-      padding: 8px 1.8em;
-      box-shadow: 0 0.3rem rgba(121, 121, 121, 0.65);
+      .fa-quote-left {
+        font-size: 4rem;
+      }
     }
 
-    button:hover {
-      filter: brightness(110%);
+    .quote-container__author {
+      margin-top: 15px;
+      font-size: 2rem;
+      font-weight: 400;
+      font-style: italic;
     }
 
-    // :active-pseudo class element is used to activate when clicking on a button
-    button:active {
-      transform: translate(0, 5px);
-      box-shadow: 0 0.1rem rgba(255, 255, 255, 0.65);
-    }
+    .quote-container__buttons {
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
 
-    .quote-container__twitter-button:hover {
-      color: $clr-twitter;
+      button {
+        cursor: pointer;
+        font-size: 1.2rem;
+        height: 2.5rem;
+        border: none;
+        border-radius: 10px;
+        color: $clr-white-100;
+        background: $clr-grey-800;
+        outline: none;
+        padding: 8px 1.8em;
+        box-shadow: 0 0.3rem rgba(121, 121, 121, 0.65);
+      }
 
-      .fa-twitter {
-        font-size: 1.5rem;
+      button:hover {
+        filter: brightness(110%);
+      }
+
+      // :active-pseudo class element is used to activate when clicking on a button
+      button:active {
+        transform: translate(0, 5px);
+        box-shadow: 0 0.1rem rgba(255, 255, 255, 0.65);
+      }
+
+      .quote-container__twitter-button:hover {
+        color: $clr-twitter;
+
+        .fa-twitter {
+          font-size: 1.5rem;
+        }
       }
     }
   }
