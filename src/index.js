@@ -1,2 +1,3 @@
 import './scss/main.scss';
-import './templates/quote-generator/quote-generator';
+import '../pages/infinity-scroll/infinity-scroll';
+import '../pages/quote-generator/quote-generator';
