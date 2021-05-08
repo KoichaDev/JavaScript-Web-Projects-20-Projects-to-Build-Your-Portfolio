@@ -2,23 +2,27 @@ const imageContainer = document.getElementById('image-container');
 const loader = document.getElementById('infinity-loader');
 
 // Maximum count to get image is between 10 - 30
-const count = 30;
+let initialCount = 5;
 const apiKey = 'azDEgfUl7cGcx8ALUFh1hFLFbAvQ8IGwnR29V5lpfXM';
-const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${count}`;
+let apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${initialCount}`;
 
-let ready = false;
+let isInitialLoad = false;
 let imagesLoaded = 0;
 // Track of the total iamges so we know when it's done loading everything
 let totalImages = 0;
 let photosArray = [];
+
+function updateAPIURLWithNewCount(picCount) {
+  apiUrl = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=${picCount}`;
+}
 
 function imageLoaded() {
   // Increment image loaded one after one
   imagesLoaded++;
 
   if (imagesLoaded === totalImages) {
-    ready = true;
-    console.log('ready =', ready);
+    isInitialLoad = true;
+    loader.hidden = true;
   }
 }
 
@@ -28,7 +32,6 @@ function displayPhotos() {
   // 30
   imagesLoaded = 0;
   totalImages = photosArray.length;
-  console.log('Total images', totalImages);
 
   photosArray.map((photo) => {
     const anchor = document.createElement('a');
@@ -66,6 +69,11 @@ async function getPhotos() {
     const response = await fetch(apiUrl);
     photosArray = await response.json();
     displayPhotos();
+
+    if (isInitialLoad) {
+      updateAPIURLWithNewCount(30);
+      isInitialLoad = false;
+    }
   } catch (err) {
     console.log(err);
   }
@@ -75,8 +83,8 @@ window.addEventListener('scroll', () => {
   const windowHeight = window.innerHeight + window.scrollY;
   const fullHeightImage = document.body.offsetHeight - 1000;
 
-  if (windowHeight >= fullHeightImage && ready === true) {
-    ready = false;
+  if (windowHeight >= fullHeightImage && isInitialLoad === true) {
+    isInitialLoad = false;
     displayPhotos();
   }
 });
