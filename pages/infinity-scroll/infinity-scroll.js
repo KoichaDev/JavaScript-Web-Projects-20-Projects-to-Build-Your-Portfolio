@@ -1,3 +1,7 @@
+import unsplashJson from './unsplash.json';
+
+console.log(unsplashJson);
+
 const imageContainer = document.getElementById('image-container');
 const loader = document.getElementById('infinity-loader');
 
