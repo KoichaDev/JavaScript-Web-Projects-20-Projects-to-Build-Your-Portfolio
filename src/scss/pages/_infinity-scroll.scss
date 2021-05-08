@@ -1,0 +1,28 @@
+.infinity-body {
+  font-family: 'Bebas Neue', cursive, sans-serif;
+  background: whitesmoke;
+
+  h1 {
+    text-align: center;
+    margin-top: 1.5625em;
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+    letter-spacing: 5px;
+  }
+
+  .infinity-body__loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+
+    img {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
