@@ -6,7 +6,7 @@
     text-align: center;
     margin-top: 1.5625em;
     margin-bottom: 15px;
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 2rem, 2.5rem);
     letter-spacing: 5px;
   }
 
@@ -23,6 +23,21 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+    }
+  }
+
+  .image-container {
+    margin: 10px 30%;
+
+    @include max-width-mq('large') {
+      margin: 10px;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      margin-top: 5px;
     }
   }
 }
