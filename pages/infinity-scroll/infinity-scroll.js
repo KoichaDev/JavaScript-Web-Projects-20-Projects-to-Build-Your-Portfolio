@@ -23,7 +23,6 @@ function updateAPIURLWithNewCount(picCount) {
 function imageLoaded() {
   // Increment image loaded one after one
   imagesLoaded++;
-
   if (imagesLoaded === totalImages) {
     isInitialLoad = true;
     loader.hidden = true;
