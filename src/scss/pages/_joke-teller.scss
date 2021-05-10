@@ -12,4 +12,39 @@
   background-size: contain;
   background-position: left center;
   background-repeat: no-repeat;
+
+  button {
+    cursor: pointer;
+    outline: none;
+    width: 12.5em;
+    height: 3.125em;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.25rem;
+    color: $clr-white-100;
+    background: #ff3482;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+
+    @include max-width-mq('large') {
+      box-shadow: 5px 5px 30px 20px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  button:hover {
+    filter: brightness(95%);
+  }
+
+  button:active {
+    transform: scale(0.98);
+  }
+
+  button:disabled {
+    cursor: default;
+    filter: brightness(30%);
+  }
+  @include max-width-mq('large') {
+    background-position: center center;
+    background: cover;
+  }
 }
