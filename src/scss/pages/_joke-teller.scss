@@ -13,6 +13,21 @@
   background-position: left center;
   background-repeat: no-repeat;
 
+  .joke-container__text-box {
+    background: #f5f5f5;
+    width: 15.5em;
+    padding: 1em;
+    margin-bottom: 1em;
+    outline-color: $clr-blue-300;
+    outline-style: solid;
+    word-wrap: break-word;
+
+    p {
+      font-size: 1.25rem;
+      line-height: 1.25;
+    }
+  }
+
   button {
     cursor: pointer;
     outline: none;

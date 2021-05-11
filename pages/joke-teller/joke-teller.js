@@ -1,9 +1,11 @@
 import VoiceRSS from './text-to-speech';
 const button = document.getElementById('joke-button');
 const audioElement = document.getElementById('joke-audio');
+const jokeBox = document.querySelector('.joke-container__text-box');
+const jokeText = document.getElementById('joke-text');
 
 // VoiceRSS Speech Function
-function tellJoke(joke) {
+function tellVoice(joke) {
   const jokeString = joke.trim().replace(/ /g, '%20');
 
   // VoiceRSS Speech Parameters
@@ -19,9 +21,17 @@ function tellJoke(joke) {
   });
 }
 
+function displayText(joke) {
+  const paragraph = document.createElement('p');
+
+  paragraph.textContent = joke;
+
+  jokeText.appendChild(paragraph);
+}
+
 // Get jokes from Joke API
 async function getJokes() {
-  let joke = '';
+  let jokeMessage = '';
   const apiUrl =
     'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit';
   try {
@@ -29,18 +39,40 @@ async function getJokes() {
     const data = await response.json();
     // Assign One or Two Part Joke
     if (data.setup) {
-      joke = `${data.setup} ... ${data.delivery}`;
+      jokeMessage = `${data.setup} ... ${data.delivery}`;
     } else {
-      joke = data.joke;
+      jokeMessage = data.joke;
     }
-    // Passing Joke to VoiceRSS API
-    tellJoke(joke);
+
+    // Reset to get new Text
+    resetText(jokeMessage);
+
+    // Passing joke to Textbox from voiceRSS API
+    displayText(jokeMessage);
+
+    // Passing Joke Voice from VoiceRSS API
+    tellVoice(jokeMessage);
+
+    enableTextBox();
+
     // Disable Button
     toggleButton();
   } catch (error) {
     // Catch Error Here
     console.log(error);
   }
+}
+
+function resetText(jokeMessage) {
+  if (jokeMessage) jokeText.textContent = '';
+}
+
+function enableTextBox() {
+  jokeBox.hidden = false;
+}
+
+function disableTextBox() {
+  jokeBox.hidden = true;
 }
 
 // Disable button clicking on the joke
