@@ -13,22 +13,28 @@ if (currentSite) {
     navBar.style.backgroundColor = 'rgb(0 0 0 / 50%)';
     textBox.style.backgroundColor = 'rgb(255 255 255 / 50%)';
     toggleIcon.children[0].textContent = 'Dark Mode';
-    toggleIcon.children[1].classList.remove('fa-sun');
-    toggleIcon.children[1].classList.add('fa-moon');
-    imageOne.src = 'img/undraw_proud_coder_dark.svg';
-    imageTwo.src = 'img/undraw_feeling_proud_dark.svg';
-    imageThree.src = 'img/undraw_conceptual_idea_dark.svg';
+    toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
+    setImageMode('dark');
   }
 
   function lightMode() {
     navBar.style.backgroundColor = 'rgb(255 255 255 / 50%)';
     textBox.style.backgroundColor = 'rgb(0 0 0 / 50%)';
     toggleIcon.children[0].textContent = 'Light Mode';
-    toggleIcon.children[1].classList.remove('fa-moon');
-    toggleIcon.children[1].classList.add('fa-sun');
-    imageOne.src = 'img/undraw_proud_coder_light.svg';
-    imageTwo.src = 'img/undraw_feeling_proud_light.svg';
-    imageThree.src = 'img/undraw_conceptual_idea_light.svg';
+    toggleIcon.children[1].classList.replace('fa-moon', 'fa-replace');
+    setImageMode('light');
+  }
+
+  function setAttributes(element, attributes) {
+    for (const key in attributes) {
+      element.setAttribute(key, attributes[key]);
+    }
+  }
+
+  function setImageMode(color) {
+    imageOne.src = `img/undraw_proud_coder_${color}.svg`;
+    imageTwo.src = `img/undraw_feeling_proud_${color}.svg`;
+    imageThree.src = `img/undraw_conceptual_idea_${color}.svg`;
   }
 
   // Switch Theme Dynamically
