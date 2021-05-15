@@ -12,26 +12,22 @@ if (currentSite) {
   const imageThree = document.getElementById('image-three');
   const textBox = document.getElementById('text-box');
 
-  function darkMode() {
-    navBar.style.backgroundColor = 'rgb(0 0 0 / 50%)';
-    textBox.style.backgroundColor = 'rgb(255 255 255 / 50%)';
-    toggleIcon.children[0].textContent = 'Dark Mode';
-    toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
-    setImageMode('dark');
-  }
-
-  function lightMode() {
-    navBar.style.backgroundColor = 'rgb(255 255 255 / 50%)';
-    textBox.style.backgroundColor = 'rgb(0 0 0 / 50%)';
-    toggleIcon.children[0].textContent = 'Light Mode';
-    toggleIcon.children[1].classList.replace('fa-moon', 'fa-replace');
-    setImageMode('light');
+  function toggleDarkMode(isDark = true) {
+    navBar.style.backgroundColor = isDark ? 'rgb(0 0 0 / 50%)' : 'rgb(255 255 255 / 50%)';
+    textBox.style.backgroundColor = isDark ? 'rgb(255 255 255 / 50%)' : 'rgb(0 0 0 / 50%)';
+    toggleIcon.children[0].textContent = isDark ? 'Dark Mode' : 'Light Mode';
+    isDark
+      ? toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon')
+      : toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
+    isDark ? setImageMode('dark') : setImageMode('light');
   }
 
   function setImageMode(color) {
-    imageOne.src = `img/undraw_proud_coder_${color}.svg`;
-    imageTwo.src = `img/undraw_feeling_proud_${color}.svg`;
-    imageThree.src = `img/undraw_conceptual_idea_${color}.svg`;
+    if (!color) {
+      imageOne.src = `img/undraw_proud_coder_${color}.svg`;
+      imageTwo.src = `img/undraw_feeling_proud_${color}.svg`;
+      imageThree.src = `img/undraw_conceptual_idea_${color}.svg`;
+    }
   }
 
   // Switch Theme Dynamically
@@ -41,11 +37,11 @@ if (currentSite) {
     if (toggle) {
       rootElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('theme', 'dark');
-      darkMode();
+      toggleDarkMode(true);
     } else {
       rootElement.setAttribute('data-theme', 'light');
       localStorage.setItem('theme', 'light');
-      lightMode();
+      toggleDarkMode(false);
     }
   }
 
@@ -59,7 +55,7 @@ if (currentSite) {
 
     if (currentTheme === 'dark') {
       toggleSwitch.checked = true;
-      darkMode();
+      toggleDarkMode(true);
     }
   }
 }
