@@ -11,11 +11,12 @@
       integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
       crossorigin="anonymous"
     />
-
     <link rel="stylesheet" href="../../../dist/index.css" />
     <script src="../../../dist/index.js" defer></script>
+
     <title>Vanilla JavaScript: Dark Mode</title>
   </head>
+
   <body class="dark-light-body">
     <!-- Dark Mode Switch -->
     <div class="theme-switch-wrapper">
@@ -24,7 +25,7 @@
         <i class="fas fa-sun"></i>
       </span>
       <label class="theme-switch">
-        <input type="checkbox" />
+        <input type="checkbox" id="toggle-dark-light-mode" />
         <div class="slider round"></div>
       </label>
     </div>
@@ -42,7 +43,7 @@
       </div>
     </section>
 
-    <section id="about">
+    <section class="dark-light-body__about" id="about">
       <h1>Undraw Illustrations</h1>
       <div class="about-container">
         <div class="image-container">
@@ -60,7 +61,7 @@
       </div>
     </section>
 
-    <section id="projects">
+    <section class="dark-light-body__projects" id="projects">
       <h1>Buttons</h1>
       <div class="buttons">
         <button class="primary">Primary</button>
@@ -79,7 +80,7 @@
       </div>
     </section>
 
-    <section id="contact">
+    <section class="dark-light-body__contacts" id="contact">
       <div class="social-icons">
         <i class="fab fa-github"></i>
         <i class="fab fa-codepen"></i>

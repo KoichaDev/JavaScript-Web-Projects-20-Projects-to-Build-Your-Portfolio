@@ -1,85 +1,90 @@
 import VoiceRSS from './text-to-speech';
-const button = document.getElementById('joke-button');
-const audioElement = document.getElementById('joke-audio');
-const jokeBox = document.querySelector('.joke-container__text-box');
-const jokeText = document.getElementById('joke-text');
 
-// VoiceRSS Speech Function
-function tellVoice(joke) {
-  const jokeString = joke.trim().replace(/ /g, '%20');
+const currentSite = window.location.href.split('/').includes('joke-teller.html');
 
-  // VoiceRSS Speech Parameters
-  VoiceRSS(audioElement).speech({
-    // Normally, don't write out API Keys like this, but an exception made here because it's free.
-    key: 'e985f868e96c46d9b0789c3855350152',
-    src: jokeString,
-    hl: 'en-us',
-    r: 0,
-    c: 'mp3',
-    f: '44khz_16bit_stereo',
-    ssml: false,
-  });
-}
+if (currentSite) {
+  const button = document.getElementById('joke-button');
+  const audioElement = document.getElementById('joke-audio');
+  const jokeBox = document.querySelector('.joke-container__text-box');
+  const jokeText = document.getElementById('joke-text');
 
-function displayText(joke) {
-  const paragraph = document.createElement('p');
+  // VoiceRSS Speech Function
+  function tellVoice(joke) {
+    const jokeString = joke.trim().replace(/ /g, '%20');
 
-  paragraph.textContent = joke;
-
-  jokeText.appendChild(paragraph);
-}
-
-// Get jokes from Joke API
-async function getJokes() {
-  let jokeMessage = '';
-  const apiUrl =
-    'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit';
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    // Assign One or Two Part Joke
-    if (data.setup) {
-      jokeMessage = `${data.setup} ... ${data.delivery}`;
-    } else {
-      jokeMessage = data.joke;
-    }
-
-    // Reset to get new Text
-    resetText(jokeMessage);
-
-    // Passing joke to Textbox from voiceRSS API
-    displayText(jokeMessage);
-
-    // Passing Joke Voice from VoiceRSS API
-    tellVoice(jokeMessage);
-
-    enableTextBox();
-
-    // Disable Button
-    toggleButton();
-  } catch (error) {
-    // Catch Error Here
-    console.log(error);
+    // VoiceRSS Speech Parameters
+    VoiceRSS(audioElement).speech({
+      // Normally, don't write out API Keys like this, but an exception made here because it's free.
+      key: 'e985f868e96c46d9b0789c3855350152',
+      src: jokeString,
+      hl: 'en-us',
+      r: 0,
+      c: 'mp3',
+      f: '44khz_16bit_stereo',
+      ssml: false,
+    });
   }
-}
 
-function resetText(jokeMessage) {
-  if (jokeMessage) jokeText.textContent = '';
-}
+  function displayText(joke) {
+    const paragraph = document.createElement('p');
 
-function enableTextBox() {
-  jokeBox.hidden = false;
-}
+    paragraph.textContent = joke;
 
-function disableTextBox() {
-  jokeBox.hidden = true;
-}
+    jokeText.appendChild(paragraph);
+  }
 
-// Disable button clicking on the joke
-// re-enable when the joke has finished
-function toggleButton() {
-  button.disabled = !button.disabled;
-}
+  // Get jokes from Joke API
+  async function getJokes() {
+    let jokeMessage = '';
+    const apiUrl =
+      'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit';
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      // Assign One or Two Part Joke
+      if (data.setup) {
+        jokeMessage = `${data.setup} ... ${data.delivery}`;
+      } else {
+        jokeMessage = data.joke;
+      }
 
-button.addEventListener('click', getJokes);
-audioElement.addEventListener('ended', toggleButton);
+      // Reset to get new Text
+      resetText(jokeMessage);
+
+      // Passing joke to Textbox from voiceRSS API
+      displayText(jokeMessage);
+
+      // Passing Joke Voice from VoiceRSS API
+      tellVoice(jokeMessage);
+
+      enableTextBox();
+
+      // Disable Button
+      toggleButton();
+    } catch (error) {
+      // Catch Error Here
+      console.log(error);
+    }
+  }
+
+  function resetText(jokeMessage) {
+    if (jokeMessage) jokeText.textContent = '';
+  }
+
+  function enableTextBox() {
+    jokeBox.hidden = false;
+  }
+
+  function disableTextBox() {
+    jokeBox.hidden = true;
+  }
+
+  // Disable button clicking on the joke
+  // re-enable when the joke has finished
+  function toggleButton() {
+    button.disabled = !button.disabled;
+  }
+
+  button.addEventListener('click', getJokes);
+  audioElement.addEventListener('ended', toggleButton);
+}
