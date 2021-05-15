@@ -1,6 +1,9 @@
 const currentSite = window.location.href.split('/').includes('dark-light-mode.html');
 
 if (currentSite) {
+  // Document.documentElement returns the Element that is the root element of the document (for example, the <html> element for HTML documents).
+  // https://developer.mozilla.org/en-US/docs/Web/API/Document/documentElement
+  const rootElement = document.documentElement;
   const toggleSwitch = document.getElementById('toggle-dark-light-mode');
   const navBar = document.getElementById('dark-light-nav');
   const toggleIcon = document.getElementById('toggle-icon');
@@ -25,12 +28,6 @@ if (currentSite) {
     setImageMode('light');
   }
 
-  function setAttributes(element, attributes) {
-    for (const key in attributes) {
-      element.setAttribute(key, attributes[key]);
-    }
-  }
-
   function setImageMode(color) {
     imageOne.src = `img/undraw_proud_coder_${color}.svg`;
     imageTwo.src = `img/undraw_feeling_proud_${color}.svg`;
@@ -41,16 +38,28 @@ if (currentSite) {
   function switchTheme(e) {
     const toggle = e.target.checked;
 
-    // Document.documentElement returns the Element that is the root element of the document (for example, the <html> element for HTML documents).
-    // https://developer.mozilla.org/en-US/docs/Web/API/Document/documentElement
     if (toggle) {
-      document.documentElement.setAttribute('data-theme', 'dark');
+      rootElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
       darkMode();
     } else {
-      document.documentElement.setAttribute('data-theme', 'light');
+      rootElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
       lightMode();
     }
   }
 
   toggleSwitch.addEventListener('change', switchTheme);
+
+  // Check Local Storage for Theme Mode
+  const currentTheme = localStorage.getItem('theme');
+
+  if (currentTheme) {
+    rootElement.setAttribute('data-theme', currentTheme);
+
+    if (currentTheme === 'dark') {
+      toggleSwitch.checked = true;
+      darkMode();
+    }
+  }
 }
