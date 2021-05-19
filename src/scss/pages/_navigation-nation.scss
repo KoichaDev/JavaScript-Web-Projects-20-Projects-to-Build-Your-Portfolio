@@ -1,8 +1,76 @@
-$navColor1: #21292c;
-$navColor2: #aa3e39;
-$navColor3: #aa6e39;
-$navColor4: #236267;
-$navColor5: #2c8437;
+// @use 'sass:list';
+
+$nav-colors: (
+  clr-nav-1: #21292c,
+  clr-nav-2: #aa3e39,
+  clr-nav-3: #aa6e39,
+  clr-nav-4: #236267,
+  clr-nav-5: #2c8437,
+);
+
+// Navigation Menu
+.navigation-nation-overlay {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $clr-black-970;
+
+  nav {
+    ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: stretch;
+      list-style: none;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+
+      li {
+        height: 20%;
+        overflow: hidden;
+
+        a {
+          display: block;
+          position: relative;
+          top: 45%;
+          color: $clr-white-100;
+          text-transform: uppercase;
+          letter-spacing: 4px;
+          text-decoration: none;
+          text-align: center;
+          cursor: pointer;
+        }
+
+        a::before {
+          content: '';
+          position: absolute;
+          top: 47.5%;
+          left: 0;
+          width: 25vw;
+          height: 3px;
+          background: $clr-white-100;
+          opacity: 0;
+        }
+
+        a:hover {
+          transform: scale(1.2);
+        }
+        a:hover::before {
+          opacity: 1;
+        }
+      }
+
+      @for $number from 1 through length($nav-colors) {
+        li:nth-of-type(#{$number}) {
+          background: map-get($nav-colors, clr-nav-#{$number});
+        }
+      }
+    }
+  }
+}
 
 .main-navigation-nation {
   font-family: Nunito, sans-serif;
@@ -38,19 +106,19 @@ $navColor5: #2c8437;
   }
 
   section#about {
-    background-color: $navColor2;
+    background-color: map-get($nav-colors, clr-nav-2);
   }
 
   section#skills {
-    background-color: $navColor3;
+    background-color: map-get($nav-colors, clr-nav-3);
   }
 
   section#projects {
-    background-color: $navColor4;
+    background-color: map-get($nav-colors, clr-nav-4);
   }
 
   section#contact {
-    background-color: $navColor5;
+    background-color: map-get($nav-colors, clr-nav-5);
   }
 
   /* Media Query: Large Smartphone (Vertical) */
